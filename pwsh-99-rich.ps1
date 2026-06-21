@@ -1,85 +1,16 @@
-# pwsh-rich.ps1
-.\pwsh-global
-
-$moduleName = "PowerShellRich"
-.\pwsh-install-module
-if {$InstallModuleInstalled)
-{
-Write-Host "Проверяем установку PowerShellRich" -Foreground Yellow
-$PowershellRichInstalled = Get-InstalledModule -Name  "PowerShellRich" -ErrorAction SilentlyContinue
-if ($installedModule) { Write-Host "Модуль '$moduleName' уже установлен. Версия: $($installedModule.Version" -ForegroundColor Green} 
-	
-}
-else { Write-Error "Модуль Install-Module не установлен." }
-
-
-$Global:HasInstallModule = Get-Command Install-Module -ErrorAction SilentlyContinue
-    if ( $HasInstallModule ) {Write-Host "команда Install-Module найдена." -Foreground Green }
-    else { Write-Error "команда не найдена (установите модуль PowerShellGet или обновите PowerShell до версии 5.1+)" } 
-
-
-<# 
-else 
-	{ 
-		Write-Host "Модуль '$moduleName' не найден. Начинаем установку..." -ForegroundColor Yellow
-		Write-Host "Проверка на наличие команды Install-Module (обычно есть в PowerShell 5.1+)"
-    if (-not (Get-Command Install-Module -ErrorAction SilentlyContinue)) {
-        Write-Error "❌ Команда Install-Module не найдена. Установите модуль PowerShellGet или обновите PowerShell до версии 5.1 и выше."
-        return
-    }
-
-    # Установка модуля (может потребоваться подтверждение политики)
-    try {
-        # Для автоматической установки без лишних вопросов используйте -Force
-        # Для установки только для текущего пользователя добавьте -Scope CurrentUser
-        Install-Module -Name $moduleName -Force -AllowClobber -ErrorAction Stop
-        Write-Host "✅ Модуль '$moduleName' успешно установлен." -ForegroundColor Green
-    }
-    catch {
-        Write-Error "❌ Ошибка при установке модуля: $_"
-        Write-Host "💡 Убедитесь, что политика выполнения (ExecutionPolicy) не блокирует установку." -ForegroundColor Yellow
-        Write-Host "   Попробуйте выполнить от имени администратора: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser" -ForegroundColor Yellow
-    }
-}
- #><# 
-Как это работает
-Проверка наличия (Get-InstalledModule):
-С помощью Get-InstalledModule проверяется, есть ли модуль в списке установленных . Флаг -ErrorAction SilentlyContinue подавляет ошибку, если модуль не найден, чтобы скрипт мог продолжить работу.
-
-Анализ результата:
-Если объект $installedModule существует, скрипт выводит сообщение об успехе с версией модуля .
-Если $installedModule пуст, скрипт переходит к установке.
-
-Установка (Install-Module):
-Команда Install-Module -Name PowerShellRich загружает модуль из галереи PowerShell Gallery .
-Параметр -Force используется для автоматического подтверждения установки без запроса "Вы доверяете этому репозиторию?".
-Параметр -AllowClobber разрешает перезапись конфликтующих команд, если они есть .
-
-Обработка ошибок:
-Если установка не удалась (например, из-за политик безопасности), скрипт выводит подсказку о проверке ExecutionPolicy.
-
-Важные замечания
-Требования к версии PowerShell:
-Модуль PowerShellRich требует PowerShell 7.0 или новее . Если у вас более старая версия (например, Windows PowerShell 5.1), установка, скорее всего, не сработает.
-
-Политика выполнения (ExecutionPolicy):
-При первом использовании Install-Module система может запросить разрешение на установку модулей из ненадежного репозитория (PowerShell Gallery). Если скрипт выдает ошибку, выполните в консоли (один раз) команду:
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Это разрешит запуск локальных скриптов и установку подписанных модулей из интернета .
-
-Установка без прав администратора:
-Если у вас нет прав на запись в системную папку Program Files, используйте установку для текущего пользователя. Для этого в команду Install-Module внутри скрипта нужно добавить флаг -Scope CurrentUser. Тогда модуль установится в папку пользователя ~\Documents\PowerShell\Modules .
- #>
+﻿# pwsh-99-rich.ps1
 
 Write-Host "`n99.2. Базовый синтаксис" -Foreground Cyan
 Write-Rich "`n[стиль]текст[/стиль]"
 Write-Host "`n99.3. Примеры стилей" -Foreground Cyan
+
 # Цвета и базовые стили
 Write-Rich "[bold]Жирный текст[/bold]"
 Write-Rich "[italic]Курсив[/italic]"
 Write-Rich "[underline]Подчеркнутый[/underline]"
 Write-Rich "[strike]Зачеркнутый[/strike]"
 Write-Rich "[reverse]Инвертированные цвета[/reverse]"
+
 # Цвета текста
 Write-Rich "[red]Красный текст[/red]"
 Write-Rich "[green]Зеленый текст[/green]"
