@@ -1,48 +1,7 @@
-<# # .\pwsh-1-2-colorsr
-
-Write-Host "`n2. SETTING UP COLORS"-foreground cyan
-
-Write-Host "`n2.1. Installed"-foreground cyan
-
-$Global:HeaderColor = [ConsoleColor]::Cyan
-$Global:MessageColor = [ConsoleColor]::Gray
-$Global:MessageSimpleColor = [ConsoleColor]::DarkGray
-$Global:AttentionColor = [ConsoleColor]::Yellow
-$Global:OkColor = [ConsoleColor]::Green
-$Global:NotOkColor = [ConsoleColor]::Red
-$Global:ErrorMessage = [ConsoleColor]::Red
-
-Write-Host "`nHeader" -ForegroundColor $HeaderColor
-Write-Host "Message" -ForegroundColor $MessageColor
-Write-Host "Error" -ForegroundColor $ErrorMessage
-Write-Host "Important message, checking, reaction request" -ForegroundColor $AttentionColor
-Write-Host "Positive checking result" -ForegroundColor $OkColor
-Write-Host "Negative checking result" -ForegroundColor $NotOkColor
-
-Write-Host "`n2.2. Additionally"-foreground cyan
-
-$ex = "default"
-do while ($ex -neq "y" -or $ex -neq "Y") 
-{
-	$colorname = Read-Host "Enter the name of the global color variable: "
-	if ($colorname -neq "")
-	{
-		# создать глобальную переменную
-		$color = Read-Host "Get color as Color: "
-			if ($colorname -neq "") # валидация цвета
-			{
-				# присвоить colorname color
-				write-host "A global color named has been created!" -foreground Yellow
-			}
-	}
-	$colorname = Read-Host "Do you want to add more named global colors? (y\N): "
-}
- #>
-# .\pwsh-1-2-colors.ps1
+# pwsh-1-3-colorsr
 
 Write-Host "`n2. SETTING UP COLORS" -ForegroundColor Cyan
-
-Write-Host "`n2.1. Installed" -ForegroundColor Cyan
+Write-Host "`n2.1. All defined global colors:" -ForegroundColor Cyan
 
 $Global:HeaderColor = [ConsoleColor]::Cyan
 $Global:MessageColor = [ConsoleColor]::Gray
@@ -50,14 +9,21 @@ $Global:MessageSimpleColor = [ConsoleColor]::DarkGray
 $Global:AttentionColor = [ConsoleColor]::Yellow
 $Global:OkColor = [ConsoleColor]::Green
 $Global:NotOkColor = [ConsoleColor]::Red
-$Global:ErrorMessage = [ConsoleColor]::Red
+$Global:ErrorMessageColor = [ConsoleColor]::Red
+$Global:DebugInfoColor = [ConsoleColor]::DarkBlue
 
-Write-Host "`nHeader" -ForegroundColor $HeaderColor
+<# Write-Host "`nHeader" -ForegroundColor $HeaderColor
 Write-Host "Message" -ForegroundColor $MessageColor
 Write-Host "Error" -ForegroundColor $ErrorMessage
 Write-Host "Important message, checking, reaction request" -ForegroundColor $AttentionColor
 Write-Host "Positive checking result" -ForegroundColor $OkColor
 Write-Host "Negative checking result" -ForegroundColor $NotOkColor
+ #>
+Get-Variable -Scope Global | Where-Object { $_.Value -is [ConsoleColor] } | ForEach-Object {
+    Write-Host "$($_.Name) = $($_.Value)" -ForegroundColor $_.Value
+}
+
+optionbool "Do you want to add more named global colors? (y/N)"
 
 Write-Host "`n2.2. Additionally" -ForegroundColor Cyan
 

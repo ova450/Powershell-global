@@ -1,9 +1,9 @@
-# pwsh-0-start
+# pwsh-1-0-start
 
 Write-Host "`n1. GLOBAL SYSTEM SETTINGS" -foreground cyan
 .\pwsh-1-1-environment		# 1.1. Checking environment
-.\pwsh-1-2-colors				# 1.2. Colors setting
-.\pwsh-1-3-functions			# 1.3. Functions		
+.\pwsh-1-2-functions			# 1.3. Functions		
+.\pwsh-1-3-colors				# 1.2. Colors setting
 <# .\pwsh-1-4-checkcolors		# 1.3. Check colors		
 .\pwsh-1-4-output				# 1.4. Output modes
 .\pwsh-1-5-loging				# 1.5. Logging modes

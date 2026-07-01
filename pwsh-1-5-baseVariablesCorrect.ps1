@@ -1,4 +1,14 @@
-# .\pwsh-1-4-checkcolors
+# pwsh-1-5-baseVariablesCorrect
+
+Write-Host "`n1.5 BASE VARIABLES CORRECT" -foreground cyan
+Write-Host "DebugInfo = $DebugInfo"
+Write-Host "CommandInfo = $CommandInfo"
+Write-Host "Examples = $Examples"
+Write-Host "LogDetails = $LogDetails"
+Write-Host "LogDebugInfo = $LogDebugInfo"
+Write-Host "Registration = $Registration"
+Write-Host "GlobalSystemVariablesManagement = $GlobalSystemVariablesManagement "
+
 
 function Show-GlobalVariables {
     <#
