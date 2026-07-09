@@ -13,7 +13,7 @@ function BaseVariablesSet
 {
 	param 
 	(
-	[swittch]$NoDetails
+	[switch]$NoDetails
 	)
 	$Details = -not $NoDetails
 	$filename = [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name)
