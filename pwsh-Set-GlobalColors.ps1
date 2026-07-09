@@ -5,9 +5,9 @@ Write-Host "`n2.1. All defined global colors:" -ForegroundColor Cyan
 
  #>
  
-  .\pwsh-1-0-baseVariablesSet
+  # .\pwsh-1-0-baseVariablesSet
  
- $Global:HeaderColor = [ConsoleColor]::Cyan
+$Global:HeaderColor = [ConsoleColor]::Cyan
 $Global:MessageColor = [ConsoleColor]::Gray
 $Global:MessageSimpleColor = [ConsoleColor]::DarkGray
 $Global:AttentionColor = [ConsoleColor]::Yellow
@@ -17,7 +17,7 @@ $Global:ErrorMessageColor = [ConsoleColor]::Red
 $Global:DebugInfoColor = [ConsoleColor]::DarkBlue
 
  $filename = [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name)
-Write-Host "$filename : базовые глобальные цвета установлены..." -Foreground Gray
+Write-Host "Базовые глобальные цвета установлены скриптом $filename ..." -Foreground Yellow
 Write-Host 
 
 <# Write-Host "`nHeader" -ForegroundColor $HeaderColor
