@@ -1,5 +1,9 @@
 # pwsh-1-0-baseVariablesSet
 
+Import-Module .\OptionList.psm1 -Force
+
+$Global:VariableList = [VariableList]::new()
+
 [string]$Global:Info = $true		# Command Details/Debug Help/Examples
 [bool]$Global:Details = $false
 [switch]$Global:Debug
@@ -8,6 +12,9 @@
 [bool]$Global:Log = $true
 [bool]$Global:Registration = $false
 [bool]$Global:GlobalSystemVariablesManagement = $false
+
+$Global:VariableList.LoadFromSession()
+$Global:VariableList.SaveToJson("GlobalVariables.json")
 
 function BaseVariablesSet
 {
